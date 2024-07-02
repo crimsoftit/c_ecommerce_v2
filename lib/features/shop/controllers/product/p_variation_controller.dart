@@ -1,3 +1,4 @@
+import 'package:duara_ecommerce/features/shop/controllers/product/cart_controller.dart';
 import 'package:duara_ecommerce/features/shop/controllers/product/images_controller.dart';
 import 'package:duara_ecommerce/features/shop/models/product_model.dart';
 import 'package:duara_ecommerce/features/shop/models/product_variations_model.dart';
@@ -33,6 +34,13 @@ class CVariationController extends GetxController {
     if (selectedVariation.pImage.isNotEmpty) {
       CImagesController.instance.selectedProductImg.value =
           selectedVariation.pImage;
+    }
+
+    // display the selected variation qty already in the cart
+    if (selectedVariation.id.isNotEmpty) {
+      final cartController = CCartController.instance;
+      cartController.pQtyInCart.value = cartController.getVariationQtyInCart(
+          product.id, selectedVariation.id);
     }
 
     // assign selected variation

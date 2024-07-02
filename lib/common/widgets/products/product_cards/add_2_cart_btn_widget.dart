@@ -29,9 +29,11 @@ class CProductCardAddToCartButton extends StatelessWidget {
 
           cartController.addSingleItemToCart(cartItem);
         } else {
-          final cartItem = cartController.convertProductToCartItem(product, 1);
+          // final cartItem = cartController.convertProductToCartItem(product, 1);
 
-          cartController.addSingleItemToCart(cartItem);
+          //cartController.convertProductToCartItem(product, 1);
+
+          //cartController.addSingleItemToCart(cartItem);
           Get.to(() => ProductDetailsScreen(product: product));
         }
       },

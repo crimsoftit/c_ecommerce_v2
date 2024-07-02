@@ -32,6 +32,7 @@ class CCartCounterIcon extends StatelessWidget {
         ),
         Positioned(
           right: 0,
+          top: 5,
           child: Container(
             width: 18,
             height: 18,

@@ -80,9 +80,11 @@ class CAddToCartBottomNavBar extends StatelessWidget {
                 ],
               ),
               ElevatedButton(
-                onPressed: () {
-                  cartController.addToCart(product);
-                },
+                onPressed: cartController.pQtyInCart.value < 1
+                    ? null
+                    : () {
+                        cartController.addToCart(product);
+                      },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(
                     CSizes.md,
@@ -99,28 +101,6 @@ class CAddToCartBottomNavBar extends StatelessWidget {
                       ),
                 ),
               ),
-              // ElevatedButton(
-              //   onPressed: cartController.pQtyInCart.value < 1
-              //       ? null
-              //       : () {
-              //           cartController.addToCart(product);
-              //         },
-              //   style: ElevatedButton.styleFrom(
-              //     padding: const EdgeInsets.all(
-              //       CSizes.md,
-              //     ),
-              //     backgroundColor: CColors.rBrown,
-              //     side: const BorderSide(
-              //       color: CColors.rBrown,
-              //     ),
-              //   ),
-              //   child: Text(
-              //     'add to cart'.toUpperCase(),
-              //     style: Theme.of(context).textTheme.labelMedium?.apply(
-              //           color: CColors.white,
-              //         ),
-              //   ),
-              // ),
             ],
           );
         },
