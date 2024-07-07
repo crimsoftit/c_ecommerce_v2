@@ -1,5 +1,7 @@
 import 'package:duara_ecommerce/common/widgets/text_widgets/p_price_txt.dart';
+import 'package:duara_ecommerce/features/shop/controllers/product/cart_controller.dart';
 import 'package:duara_ecommerce/utils/constants/sizes.dart';
+import 'package:duara_ecommerce/utils/helpers/pricing_calculator.dart';
 import 'package:flutter/material.dart';
 
 class CBillingAmountSection extends StatelessWidget {
@@ -7,6 +9,10 @@ class CBillingAmountSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = CCartController.instance;
+
+    final subTotal = cartController.totalCartPrice.value;
+
     return Column(
       children: [
         // -- sub total
@@ -19,8 +25,8 @@ class CBillingAmountSection extends StatelessWidget {
                     fontWeightDelta: 2,
                   ),
             ),
-            const CProductPriceText(
-              price: '25,000',
+            CProductPriceText(
+              price: '$subTotal',
               isLarge: true,
             ),
           ],
@@ -37,8 +43,8 @@ class CBillingAmountSection extends StatelessWidget {
               'shipping fee: ',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            const CProductPriceText(
-              price: '600',
+            CProductPriceText(
+              price: CPricingCalculator.calculateShippingCost(subTotal, 'us'),
               isLarge: false,
             ),
           ],
@@ -56,8 +62,8 @@ class CBillingAmountSection extends StatelessWidget {
               'taxation fee: ',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            const CProductPriceText(
-              price: '400',
+            CProductPriceText(
+              price: CPricingCalculator.calculateTax(subTotal, 'us'),
               isLarge: false,
             ),
           ],
@@ -77,8 +83,9 @@ class CBillingAmountSection extends StatelessWidget {
                     fontWeightDelta: 2,
                   ),
             ),
-            const CProductPriceText(
-              price: '26,000',
+            CProductPriceText(
+              price: CPricingCalculator.calculateTotalPrice(subTotal, 'us')
+                  .toString(),
               isLarge: true,
             ),
           ],

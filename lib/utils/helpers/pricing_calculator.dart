@@ -1,4 +1,4 @@
-class RPricingCalculator {
+class CPricingCalculator {
   // -- calculate price based on tax & shipping rates --
   static double calculateTotalPrice(double productPrice, String location) {
     double taxRate = getTaxRateForLocation(location);
